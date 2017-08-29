@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link media="all" type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 sidebar2">
+                <div class="logo text-center">
+                    <img src="https://i.pinimg.com/736x/03/b0/d4/03b0d440083aaa8533873a4e8cc7ad50--massage-logo-corporate-logos.jpg" class="img-responsive center-block" alt="Logo">
+                  <h4>The Charlotte Dev</h4>
+                    <!--<div class="coins">
+                      <i class="fa fa-dollar" aria-hidden="true"></i>
+                    </div>
+                      <p class="coins">2,342</p>-->
+                      <div>
+                    <button type="button" class="btn btn-default Add-friend">
+  <i class="fa fa-rocket" aria-hidden="true"></i> About
+</button></div>
+
+                </div>
+                <br>
+
+                <div class="left-navigation">
+
+                    <ul class="list">
+
+                        <li><i class="fa fa-safari" aria-hidden="true"></i>Uptown</li>
+                        <li><i class="fa fa-thumbs-up" aria-hidden="true"></i>South End</li>
+                        <li><i class="fa fa-hand-o-right" aria-hidden="true"></i>Dilworth</li>
+                       <li><i class="fa fa-trophy" aria-hidden="true"></i>NoDa</li>
+                       <li><i class="fa fa-certificate" aria-hidden="true"></i>Plaza Midwood</li>
+                       <li><i class="fa fa-users" aria-hidden="true"></i></i>SouthPark</li>
+                        <li><i class="fa fa-bar-chart" aria-hidden="true"></i>Elizabeth</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8 main-content">
+                <!--Central content goes here-->
+                <h1>FEEDBACK APPRECIATED! :)</h1>
+            </div>
+        </div>
+    </div>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYmNoZWVzZW1hbiIsImEiOiJjajI2ZnY5NTEwMGF5MzJwOHJvYmp2bjZ1In0.5rZz_XyzMlWIL9JFD5VQTw';
+var map = new mapboxgl.Map({
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [-80.8463, 35.2272],
+    zoom: 16,
+    pitch: 45,
+    bearing: -17.6,
+    container: 'map'
+});
+
+// the 'building' layer in the mapbox-streets vector source contains building-height
+// data from OpenStreetMap.
+map.on('load', function() {
+    map.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'filter': ['==', 'extrude', 'true'],
+        'type': 'fill-extrusion',
+        'minzoom': 15,
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-height': {
+                'type': 'identity',
+                'property': 'height'
+            },
+            'fill-extrusion-base': {
+                'type': 'identity',
+                'property': 'min_height'
+            },
+            'fill-extrusion-opacity': .6
+        }
+    });
+});
+</script>
+
+</body>
+
+</html>
