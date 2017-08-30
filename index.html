@@ -57,6 +57,7 @@
     </div>
 
 <div id='map'></div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmNoZWVzZW1hbiIsImEiOiJjajI2ZnY5NTEwMGF5MzJwOHJvYmp2bjZ1In0.5rZz_XyzMlWIL9JFD5VQTw';
 var map = new mapboxgl.Map({
@@ -91,6 +92,45 @@ map.on('load', function() {
             'fill-extrusion-opacity': .6
         }
     });
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-80.8463, 35.2272]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'Packard Place'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-80.8463, 35.2271]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'Charlotte'
+    }
+  }]
+};
+
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el, { offset: [-50 / 2, -50 / 2] })
+  .setLngLat(marker.geometry.coordinates)
+  .addTo(map);
 });
 </script>
 
